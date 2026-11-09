@@ -30,18 +30,12 @@ using namespace std;
     None.
 
 *****************************************************************************/
-QuadratureOscillator::QuadratureOscillator(
-  float sampleRate,
-  float frequency,
-  float alpha,
-  float referencLevel)
+QuadratureOscillator::QuadratureOscillator(float sampleRate,float frequency)
 {
 
   // Save parameters for later use.
   this->sampleRate = sampleRate;
   this->frequency = frequency;
-  this->alpha = alpha;
-  this->referenceLevel = referenceLevel;
 
   // Set filter coefficients.
   sineCoefficient = sin(2 * M_PI * frequency / sampleRate);
@@ -132,10 +126,10 @@ void QuadratureOscillator::reset(void)
 {
 
   // Se initial conditions of state memory.
-  inPhaseState = 0;
-  quadratureState = 1;
+  inPhaseState = 1;
+  quadratureState = 0;
 
-  // Set initial gain to something reasonable.
+  // Set iniitial gain.
   agcGain = 1;
 
   return;
@@ -219,11 +213,8 @@ void QuadratureOscillator::updateGain(float iValue,float qValue)
   // Compute magnitude-squared.
   power = (iValue * iValue) + (qValue * qValue);
 
-  // Compute error signal.
-  error =  referenceLevel - power;
-
-  // Compute updated gain value.
-  agcGain = agcGain + (alpha * error);
+  // Use the Taylor series method with a power goal of 0.5.
+  agcGain = (3.0 / 2.0) - power;
 
   return;
 

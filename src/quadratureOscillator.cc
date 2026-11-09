@@ -15,13 +15,11 @@
 //
 // To run this program type,
 // 
-//     ./quadraOscillator -a alpha -R referenceLevel -f frequency 
-//            -r sampleRate -d duration (ms) > pcmFileName
+//     ./quadraOscillator -f frequency -r sampleRate
+//                        -d duration (ms) > pcmFileName
 //
 // where,
 //
-//    alpha - The convergence coefficient for the AGC.
-//    referenceLevel - The desired output power of the oscillator.
 //    frequency - The oscilator frequency in Hz..
 //    sampleRate - The sample rate in samples/second.
 //    duration - The duration in milliseconds.
@@ -38,8 +36,6 @@
 // This structure is used to consolidate user parameters.
 struct MyParameters
 {
-  float *alphaPtr;
-  float *referenceLevelPtr;
   float *frequencyPtr;
   float *sampleRatePtr;
   float *durationPtr;
@@ -78,12 +74,6 @@ bool getUserArguments(int argc,char **argv,struct MyParameters parameters)
   //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
   // Default parameters.
   //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-  // Default value for convergence constant.
-  *parameters.alphaPtr = 0.01;
-
-  // Default value for reference level.
-  *parameters.referenceLevelPtr = 0.5;
-
   // Default to 200Hz.
   *parameters.frequencyPtr = 200;
 
@@ -103,16 +93,10 @@ bool getUserArguments(int argc,char **argv,struct MyParameters parameters)
   while (!done)
   {
     // Retrieve the next option.
-    opt = getopt(argc,argv,"a:R:f:r:d:h");
+    opt = getopt(argc,argv,"f:r:d:h");
 
     switch (opt)
     {
-      case 'a':
-      {
-        *parameters.alphaPtr = atof(optarg);
-        break;
-      } // case
-
       case 'f':
       {
         *parameters.frequencyPtr = atof(optarg);
@@ -135,8 +119,8 @@ bool getUserArguments(int argc,char **argv,struct MyParameters parameters)
       {
 
         // Display usage.
-        fprintf(stderr,"./quadratureOscillator -a alpha R referenceLevel"
-                       " -f frequency -r sampleRate -d duration, ms\n");
+        fprintf(stderr,"./quadratureOscillator -f frequency -r sampleRate"
+                       " -d duration, ms\n");
 
         // Indicate that program must be exited.
         exitProgram = true;
@@ -166,8 +150,6 @@ int main(int argc,char **argv)
   bool exitProgram;
   float iValue, qValue;
   int16_t cosineValue;
-  float alpha;
-  float referenceLevel;
   float frequency;
   float sampleRate;
   float duration;
@@ -176,8 +158,6 @@ int main(int argc,char **argv)
   struct MyParameters parameters;
 
   // Set up for parameter transmission.
-  parameters.alphaPtr = &alpha;
-  parameters.referenceLevelPtr = &referenceLevel;
   parameters.frequencyPtr = &frequency;
   parameters.sampleRatePtr = &sampleRate;
   parameters.durationPtr = &duration;
@@ -196,9 +176,7 @@ int main(int argc,char **argv)
 
   // Instantiate a quadrature oscillator.
   myOscillatorPtr = new QuadratureOscillator(sampleRate,
-                                              frequency,
-                                              alpha,
-                                              referenceLevel);
+                                              frequency);
 
   for (i = 0; i < numberOfSamples; i++)
   {

@@ -17,8 +17,7 @@ class QuadratureOscillator
 
   public:
 
-  QuadratureOscillator(float sampleRate,float frequency, float alpha,
-                       float referencLevel);
+  QuadratureOscillator(float sampleRate,float frequency);
 
   ~QuadratureOscillator(void);
 
@@ -43,7 +42,7 @@ class QuadratureOscillator
   // The sample rate is needed when performing frequency changes.
   float sampleRate;
 
-  // The operating frequency of the NCO.
+  // The operating frequency of the oscillator.
   float frequency;
 
   // The convergence constant.
