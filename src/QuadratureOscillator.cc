@@ -37,11 +37,11 @@ QuadratureOscillator::QuadratureOscillator(
   float referencLevel)
 {
 
-  // Save for frequency updates.
+  // Save parameters for later use.
   this->sampleRate = sampleRate;
-
-  // Save for display purposes.
   this->frequency = frequency;
+  this->alpha = alpha;
+  this->referenceLevel = referenceLevel;
 
   // Set filter coefficients.
   sineCoefficient = sin(2 * M_PI * frequency / sampleRate);
@@ -134,6 +134,9 @@ void QuadratureOscillator::reset(void)
   // Se initial conditions of state memory.
   inPhaseState = 0;
   quadratureState = 1;
+
+  // Set initial gain to something reasonable.
+  agcGain = 1;
 
   return;
 
