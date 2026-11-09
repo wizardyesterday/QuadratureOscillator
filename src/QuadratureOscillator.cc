@@ -213,6 +213,17 @@ void QuadratureOscillator::run(float *iValuePtr,float *qValuePtr)
 void QuadratureOscillator::updateGain(float iValue,float qValue)
 
 {
+  float power;
+  float error;
+
+  // Compute magnitude-squared.
+  power = (iValue * iValue) + (qValue * qValue);
+
+  // Compute error signal.
+  error =  referenceLevel - power;
+
+  // Compute updated gain value.
+  agcGain = agcGain + (alpha * error);
 
   return;
 
