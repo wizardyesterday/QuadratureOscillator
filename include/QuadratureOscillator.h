@@ -37,7 +37,7 @@ class QuadratureOscillator
   // The operating frequency of the NCO.
   float frequency;
 
-  // The time constant.
+  // The convergence constant.
   float alpha;
 
   // The desired output level.
@@ -52,7 +52,7 @@ class QuadratureOscillator
   float quadratureState;
 
   // Automatic gain control gain.
-  float agcGain.
+  float agcGain;
 };
 
 #endif // __QUADRATUREOSCILLQTOR__
