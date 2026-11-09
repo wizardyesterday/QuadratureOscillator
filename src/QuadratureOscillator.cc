@@ -164,6 +164,27 @@ void QuadratureOscillator::reset(void)
 *****************************************************************************/
 void QuadratureOscillator::run(float *iValuePtr,float *qValuePtr)
 {
+  float u;
+  float v;
+
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  u = (cosineCoefficient * inPhaseState) -
+      (sineCoefficient * quadratureState);
+
+  v = (sineCoefficient * inPhaseState) +
+      (cosineCoefficient * quadratureState);
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+  *iValuePtr = agcGain * u;
+  *qValuePtr = agcGain * v;
+
+  // Update fillter state.
+  inPhaseState = *iValuePtr;
+  quadratureState = *qValuePtr;
+
+  // Update AGC.
+  updateGain(u,v);
 
   return;
 
