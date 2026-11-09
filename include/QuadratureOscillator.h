@@ -31,6 +31,15 @@ class QuadratureOscillator
   //***************************** attributes **************************
   private:
 
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  // Utility functions.
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  void updateGain(float iValue,float qValue);
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  // Attributes.
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
   // The sample rate is needed when performing frequency changes.
   float sampleRate;
 
@@ -53,6 +62,7 @@ class QuadratureOscillator
 
   // Automatic gain control gain.
   float agcGain;
+  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 };
 
 #endif // __QUADRATUREOSCILLQTOR__
