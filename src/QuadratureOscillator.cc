@@ -169,5 +169,33 @@ void QuadratureOscillator::run(float *iValuePtr,float *qValuePtr)
 
 } // run
 
+/*****************************************************************************
+
+  Name: updateGain
+
+  Purpose: The purpose of this function is to generate one sample of a
+  complex exponentional function.
+
+  Calling Sequence: updateFain(iValue,qValue)
+
+  Inputs:
+
+    iValue - The in-phase value of a sample.
+
+    qValue - The quadrature value of a sample.
+
+  Outputs:
+
+    gain - The updated gain.
+
+*****************************************************************************/
+void QuadratureOscillator::updateGain(float iValue,float qValue)
+
+{
+
+  return;
+
+} // updateGain
+
 
 
