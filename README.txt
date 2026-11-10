@@ -23,7 +23,7 @@ recursive oscillator follow:
   
 For the automatic gain control, the equations follow:
 
-  g(n) = (3.0 / 2.0) - {[u(n)* u(n)] + [v(n)*v(n)]} (4)
+  g(n) = (3.0 / 2.0) - {[u(n) * u(n)] + [v(n) * v(n)]} (4)
 
 /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 2.0 File List
@@ -80,10 +80,11 @@ Many thanks go to Richard G. Lyons for presenting the material in his
 Digital Processing Tips chapter in his book, "Understanding Digital Signal
 Processing".
 
-Facebook: Chris Gianakopoulos
+Facebook:
+  Name: Chris Gianakopoulos
 
 IRC:
-  Server: iec.libera.chat
+  Server: irc.libera.chat
   Nick: wizardyesterday
   Channels: ##trustnoone, ##rtlsdr
 
