@@ -3,7 +3,7 @@
 /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 This application provides a means for a user to generate tones that might
 be used to drive other signal processing blocks. A C++ class was written
-to bury the implementation of this "coupled quadrature oscilator so that
+to bury the implementation of this "coupled quadrature oscilator" so that
 applications can easily be created. A test program was written that uses
 the  in-phase output of the oscillator, and output values are converted
 to 16-nit signed little endian raw PCM samples.
@@ -13,7 +13,7 @@ of sqrt(2)/2 is maintained.
 The equations for this
 recursive oscillator follow:
 
-  theta = 2*pi*f*fs (1), f = oscillator frequency (Hz), fs = sample rate (S/s)
+  theta = 2*pi*f/fs (1), f = oscillator frequency (Hz), fs = sample rate (S/s)
 
   u(n) = [cos(theta) * yi(n-1)] - [sin(theta) * yq(n-1)] (2a)
   yi(n) = g(n) * u(n) (2b) 
@@ -23,7 +23,7 @@ recursive oscillator follow:
   
 For the automatic gain control, the equations follow:
 
-  g(n) = (3.0 / 2.0) - [(u(n)* u(n)) + (v(n)*v(n))] (4)
+  g(n) = (3.0 / 2.0) - {[u(n)* u(n)] + [v(n)*v(n)]} (4)
 
 /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 2.0 File List
